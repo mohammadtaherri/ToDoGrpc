@@ -1,0 +1,59 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ToDoGrpc";
+
+package todo;
+
+service ToDo{
+	rpc Create(CreateToDoRequest) returns (CreateToDoResponse) {}
+
+	rpc GetSingle(GetSingleToDoRequest) returns (GetSingleToDoRespose) {}
+
+	rpc GetAll(GetAllToDosRequest) returns (GetAllToDosRespose) {}
+
+	rpc Update(UpdateToDoRequest) returns (UpdateToDoResponse) {}
+
+	rpc Delete(DeleteToDoRequest) returns (DeleteToDoResponse) {}
+}
+
+message CreateToDoRequest{
+	string title = 1;
+	string description = 2;
+}
+
+message CreateToDoResponse{
+	int32 id = 1;
+}
+
+message GetSingleToDoRequest{
+	int32 id = 1;
+}
+
+message GetSingleToDoRespose{
+	int32 id = 1;
+	string title = 2;
+	string description = 3;
+	string status = 4;
+}
+
+message GetAllToDosRequest{}
+
+message GetAllToDosRespose{
+	repeated GetSingleToDoRespose to_dos = 1;
+}
+
+message UpdateToDoRequest{
+	int32 id = 1;
+	string title = 2;
+	string description = 3;
+	string status = 4;
+}
+
+message UpdateToDoResponse{}
+
+
+message DeleteToDoRequest{
+	int32 id = 1;
+}
+
+message DeleteToDoResponse{}
